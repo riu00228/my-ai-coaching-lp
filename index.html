@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIチャットボット体験版 | 500円でAIコーチングを試す</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Visualization & Content Choices:
+        Hero Section: Text/Price -> Inform/Engage -> Large, bold text with prominent price -> Immediate value proposition.
+        What is the AI Chatbot?: Text/Benefits List -> Inform -> Clear explanation of features and advantages -> User understanding.
+        Why 500 Yen?: Text -> Justify -> Explanation of low price point as an entry barrier -> Builds trust.
+        How to Use (Purchase Flow): Numbered List/Icons -> Guide -> Step-by-step instructions -> Ease of use, reduces friction.
+        Beyond the Chatbot: Text/Comparison -> Persuade -> Highlights limitations of AI alone and value of human coaching -> Creates need for main services.
+        Main Services CTA: Buttons -> Convert -> Clear calls to action for main coaching and courses -> Funnel conversion.
+        Testimonials: Text Quotes -> Persuade -> Social proof from trial users -> Builds credibility.
+        FAQ: Accordion (HTML/JS) -> Inform -> Answers common questions -> Reduces user doubt.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #1e3a8a; /* deep blue */
+            margin-bottom: 2.5rem; /* mb-10 */
+            text-align: center;
+        }
+        .subsection-title {
+            font-size: 1.75rem; /* text-3xl */
+            font-weight: 600; /* font-semibold */
+            color: #0c4a6e; /* sky-800 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .cta-button {
+            @apply inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition duration-300 ease-in-out transform hover:scale-105;
+        }
+        .accordion-header {
+            @apply flex justify-between items-center w-full py-4 px-6 text-left font-semibold text-lg text-slate-700 bg-slate-100 rounded-md cursor-pointer hover:bg-slate-200 transition duration-200 ease-in-out;
+        }
+        .accordion-content {
+            @apply px-6 pb-4 text-slate-600 overflow-hidden transition-all duration-300 ease-in-out;
+            max-height: 0; /* Hidden by default */
+            opacity: 0;
+            visibility: hidden;
+        }
+        .accordion-content.active {
+            max-height: 500px; /* Max height for content, adjust as needed */
+            opacity: 1;
+            visibility: visible;
+        }
+        .accordion-icon {
+            @apply transform transition-transform duration-200 ease-in-out;
+        }
+        .accordion-header.active .accordion-icon {
+            @apply rotate-180;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700 antialiased">
+
+    <header class="relative bg-gradient-to-r from-sky-600 to-blue-700 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-cover bg-center opacity-70" style="background-image: url('https://placehold.co/1920x800/2980b9/ffffff?text=AI+Chatbot+Trial');"></div>
+            <div class="absolute inset-0 bg-black opacity-30"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <p class="text-xl sm:text-2xl lg:text-3xl font-semibold mb-4 drop-shadow-md">AIの力を、今すぐあなたのビジネスに。</p>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 drop-shadow-md">AIチャットボット体験版</h1>
+            <p class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-yellow-300 mb-8 drop-shadow-lg">たったの 500円！</p>
+            <p class="text-lg sm:text-xl font-light mb-8">AIとの対話で、あなたのビジネス課題を瞬時に整理。新しいアイデアと効率化のヒントを見つけませんか？</p>
+            <a href="#purchase" class="cta-button bg-yellow-400 text-sky-800 hover:bg-yellow-500 hover:text-sky-900 focus:ring-yellow-300">
+                今すぐ500円で体験する！
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </a>
+        </div>
+    </header>
+
+    <section id="what-is-it" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <h2 class="section-title">AIチャットボット体験版で何ができる？</h2>
+        <p class="text-lg leading-relaxed mb-12 text-center">このAIチャットボットは、あなたのビジネスにおける「ちょっとした困りごと」や「アイデアの壁打ち」に最適です。気軽にAIとの対話を始めてみましょう。</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                <span class="text-5xl mb-4 block">💡</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">アイデアの壁打ち</h3>
+                <p class="text-base text-slate-600">新しい企画や問題解決のアイデア出しに、AIが客観的な視点を提供します。</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                <span class="text-5xl mb-4 block">📊</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">思考の整理</h3>
+                <p class="text-base text-slate-600">頭の中がごちゃごちゃしている時、AIとの対話で思考を構造化し、明確にします。</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                <span class="text-5xl mb-4 block">✍️</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">文章作成のヒント</h3>
+                <p class="text-base text-slate-600">メールや資料作成で困った時、AIが表現のバリエーションや構成案を提案します。</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                <span class="text-5xl mb-4 block">⏱️</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">時間・場所を選ばず</h3>
+                <p class="text-base text-slate-600">24時間365日、いつでもどこでも、あなたの都合の良い時にAIと対話できます。</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                <span class="text-5xl mb-4 block">🔒</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">プライベートな対話</h3>
+                <p class="text-base text-slate-600">誰にも聞かれたくない悩みも、AI相手なら安心して打ち明けられます。</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                <span class="text-5xl mb-4 block">🚀</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">AIへの第一歩</h3>
+                <p class="text-base text-slate-600">AI活用への心理的ハードルを下げ、その便利さを実感する最適な機会です。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-500" class="bg-sky-50 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="section-title">なぜ、たったの500円で提供するのか？</h2>
+            <p class="text-lg leading-relaxed mb-8">私たちは、より多くのビジネスパーソンにAIの可能性を気軽に体験していただきたいと考えています。AI活用への第一歩を踏み出すきっかけを提供することで、あなたのビジネス、そして人生がより豊かになることを願っています。</p>
+            <p class="text-lg leading-relaxed font-semibold text-sky-700">この500円は、AIとの新しい出会いへの投資です。さあ、未来の働き方を体験してみませんか？</p>
+        </div>
+    </section>
+
+    <section id="purchase" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <h2 class="section-title">AIチャットボット体験版の購入から利用までの流れ</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+                <span class="text-6xl mb-4 text-blue-500">1</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">購入ボタンをクリック</h3>
+                <p class="text-base text-slate-600">このページの「今すぐ500円で体験する！」ボタンをクリックし、購入手続きへ進みます。</p>
+            </div>
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+                <span class="text-6xl mb-4 text-blue-500">2</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">決済を完了</h3>
+                <p class="text-base text-slate-600">クレジットカードなど、ご希望の決済方法で500円をお支払いください。安全なシステムを利用しています。</p>
+            </div>
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+                <span class="text-6xl mb-4 text-blue-500">3</span>
+                <h3 class="font-semibold text-xl mb-2 text-sky-700">チャットボットにアクセス</h3>
+                <p class="text-base text-slate-600">決済完了後、すぐにAIチャットボットへのアクセスリンクと利用方法をメールでお送りします。</p>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <a href="#" class="cta-button bg-yellow-400 text-sky-800 hover:bg-yellow-500 hover:text-sky-900 focus:ring-yellow-300">
+                今すぐ500円で体験する！
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </a>
+        </div>
+    </section>
+
+    <section id="beyond-chatbot" class="bg-sky-50 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="section-title">AIだけでは届かない、その先へ</h2>
+            <p class="text-lg leading-relaxed mb-12 text-center">AIチャットボットは素晴らしいツールですが、真の自己成長と目標達成には、人間による深いコーチングが不可欠です。あなたの「ぶれない軸」を確立し、AIを最大限に活用するための道筋を、私たちと一緒に見つけませんか？</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <h3 class="subsection-title text-sky-700">AIの力を最大限に引き出す</h3>
+                    <p class="text-lg mb-4">AIは道具です。その道具を使いこなす「AIスキル」を磨くことで、あなたの業務効率は飛躍的に向上します。プロンプト作成の基本から実践まで、AIを最高の味方にする方法を学びましょう。</p>
+                    <a href="#" class="cta-button text-sm px-6 py-2">AIスキル講座を見る</a>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <h3 class="subsection-title text-sky-700">ぶれない自分軸を確立する</h3>
+                    <p class="text-lg mb-4">AIは客観的な情報を提供しますが、あなたの「本当にやりたいこと」や「ぶれない自分軸」は、深い内省と対話から生まれます。コーチングで自己理解を深め、主体的な行動を継続しましょう。</p>
+                    <a href="#" class="cta-button text-sm px-6 py-2">コーチングコースを見る</a>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <p class="text-xl font-semibold text-sky-700 mb-4">まずは気軽な一歩から。</p>
+                <a href="#" class="cta-button">
+                    無料AI入門講座に申し込む
+                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <h2 class="section-title">体験者の声</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="text-base italic mb-4">「500円でこんなにAIの可能性を体験できるとは驚きでした！思考の整理が格段に早くなり、次のステップへのヒントが得られました。」</p>
+                <p class="text-sm font-semibold text-right text-slate-600">— 30代 会社員</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="text-base italic mb-4">「AIチャットボットでアイデア出しの壁打ちをしてみたら、自分では思いつかない視点をもらえました。これは本コースも期待できますね！」</p>
+                <p class="text-sm font-semibold text-right text-slate-600">— 40代 フリーランス</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="bg-sky-50 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="section-title">よくあるご質問</h2>
+            <div class="space-y-4">
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        AIチャットボット体験版とは何ですか？
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="pt-4">AIチャットボット体験版は、500円でAIとの対話を体験できるサービスです。ビジネスにおけるアイデア出し、思考整理、文章作成のヒントなど、様々な用途でAIの力を手軽に試すことができます。</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        利用期間はありますか？
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="pt-4">アクセスリンク発行から〇〇日間（例：7日間）ご利用いただけます。期間内であれば、何度でもAIとの対話が可能です。</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        購入後、すぐに利用できますか？
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="pt-4">はい、決済完了後、ご登録いただいたメールアドレス宛にすぐにアクセスリンクと利用方法をお送りします。メールが届かない場合は、迷惑メールフォルダをご確認いただくか、お問い合わせください。</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        AIチャットボットの利用に特別なスキルは必要ですか？
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="pt-4">いいえ、特別なスキルは不要です。普段の会話のように、AIに質問や相談をするだけでご利用いただけます。AI活用の第一歩として最適なサービスです。</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        この体験版で得た情報は安全ですか？
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="pt-4">はい、ご安心ください。お客様との対話内容は厳重に管理され、プライバシー保護に最大限配慮しています。詳細については、プライバシーポリシーをご確認ください。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-800 text-slate-300 py-8 px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-5xl mx-auto">
+            <p class="mb-4">&copy; 2025 AI×ビジネスコーチング. All rights reserved.</p>
+            <div class="text-sm space-x-4">
+                <a href="#" class="hover:underline">プライバシーポリシー</a>
+                <a href="#" class="hover:underline">利用規約</a>
+                <a href="#" class="hover:underline">特定商取引法に基づく表記</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const isActive = content.classList.contains('active');
+
+            // Close all other active accordions
+            document.querySelectorAll('.accordion-content.active').forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                    item.style.maxHeight = '0';
+                    item.style.opacity = '0';
+                    item.style.visibility = 'hidden';
+                    item.previousElementSibling.classList.remove('active');
+                }
+            });
+
+            // Toggle the clicked accordion
+            if (isActive) {
+                content.classList.remove('active');
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+                content.style.visibility = 'hidden';
+                button.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px'; // Set max-height to content's scrollHeight
+                content.style.opacity = '1';
+                content.style.visibility = 'visible';
+                button.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
